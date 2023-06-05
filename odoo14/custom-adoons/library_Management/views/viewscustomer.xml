@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+              <record id="customer_list_view" model="ir.ui.view">
+            <field name="name">customer list </field>
+            <field name="model">library.customer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="aadress"/>
+                    <field name="phone" />
+                    <field name="email"/>
+
+                    <field name="location_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+             <record id="customer_form_view" model="ir.ui.view">
+        <field name="name">customer form </field>
+        <field name="model">library.customer</field>
+        <field name="arch" type="xml">
+            <form string="book">
+                <sheet>
+                    <group colspan="4">
+                        <field name="f_name" />
+                        <field name="l_name"/>
+                        <field name="aadress"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="location_ids" widget="many2many_tags"/>
+
+                    </group>
+                </sheet>
+            </form>
+
+         </field>
+   </record >
+    <record model="ir.actions.act_window" id="action_list_customers">
+    <field name="name">customers</field>
+    <field name="res_model">library.customer</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+<menuitem id="library_customer_cat" name="customer" parent="menu_root" action="action_list_customers"/>
+             <record model="ir.ui.view" id="view_customer_search">
+    <field name="name">library.customer.search</field>
+    <field name="model">library.customer</field>
+    <field name="arch" type="xml">
+        <search string="Search">
+            <field name="f_name"/>
+            <field name="l_name"/>
+            <field name="email"/>
+
+        </search>
+    </field>
+</record>
+
+
+
+</data>
+</odoo>
