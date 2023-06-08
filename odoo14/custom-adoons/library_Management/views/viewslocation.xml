@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+                      <record id="location_list_view" model="ir.ui.view">
+            <field name="name">location_list </field>
+            <field name="model">library.location</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_id"/>
+                    <field name="Date_location"/>
+                    <field name="Date_retour"/>
+                    <field name="customer_ids" widget="many2many_tags"/>
+
+                </tree>
+            </field>
+        </record>
+                     <record id="location_form_view" model="ir.ui.view">
+        <field name="name">location_form </field>
+        <field name="model">library.location</field>
+        <field name="arch" type="xml">
+            <form string=" the book rentals">
+                <header>
+
+                    <field name="state" widget="statusbar" statusbar_visible="reserve,cancel" statusbar_colors="{'reserve':'blue','cancel':'blue'}"/>
+                    <button name="confirm_reservation" string="Confirm"
+                            type="object" state="reserve"/>
+                    <button name="cancel_res" string="return"
+                            type="object" state="cancel"/>
+
+                </header>
+                <sheet>
+                    <group colspan="4">
+                        <field name="choix"/>
+
+                        <field name="book_id"/>
+                        <field name="Date_location"/>
+                        <field name="Date_retour"/>
+                         <field name="customer_ids" widget="many2many_tags"/>
+
+
+                    </group>
+                </sheet>
+            </form>
+         </field>
+   </record >
+    <record model="ir.actions.act_window" id="action_list_location">
+    <field name="name">location</field>
+    <field name="res_model">library.location</field>
+    <field name="view_mode">tree,form,calendar</field>
+</record>
+<menuitem id="library_location_cat" name="the history of the book rentals" parent="menu_root" action="action_list_location"/>
+                     <record model="ir.ui.view" id="view_location_search">
+    <field name="name">library.location.search</field>
+    <field name="model">library.location</field>
+    <field name="arch" type="xml">
+        <search string="Search">
+            <field name="book_id"/>
+            <field name="Date_location"/>
+            <field name="Date_retour"/>
+
+        </search>
+    </field>
+                     </record>
+    <record id="library_location_view_calendar" model="ir.ui.view">
+        <field name="name">library.location.calendar</field>
+        <field name="model">library.location</field>
+        <field name="arch" type="xml">
+            <calendar string="location Request"
+                      date_start="Date_location"
+                      date_stop="Date_retour"
+
+                      mode="year"
+                      color="book_id"
+                      quick_add="False">
+                <field name="Date_location"/>
+                <field name="Date_retour"/>
+                <field name="book_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    </data>
+
+</odoo>
+

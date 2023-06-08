@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+              <record id="book_list_view" model="ir.ui.view">
+            <field name="name">book list </field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Title"/>
+                    <field name="author_ids" widget="many2many_tags"/>
+                    <field name="Editors"/>
+                    <field name="Date" />
+                    <field name="ISBN"/>
+
+                </tree>
+            </field>
+        </record>
+             <record id="book_form_view" model="ir.ui.view">
+        <field name="name">book form </field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="book">
+                <sheet>
+                    <group colspan="4">
+                        <field name="Title" />
+                        <field name="author_ids" widget="many2many_tags"/>
+                        <field name="Editors"/>
+                        <field name="Date"/>
+                        <field name="ISBN"/>
+
+                    </group>
+                </sheet>
+            </form>
+         </field>
+   </record >
+    <record model="ir.actions.act_window" id="action_list_books">
+    <field name="name">books</field>
+    <field name="res_model">library.book</field>
+    <field name="view_mode">tree,form</field>
+</record>
+<menuitem id="menu_root" name="library"/>
+<menuitem id="library_book_cat" name="book" parent="menu_root" action="action_list_books"/>
+        <record model="ir.ui.view" id="view_book_search">
+    <field name="name">library.book.search</field>
+    <field name="model">library.book</field>
+    <field name="arch" type="xml">
+        <search string="Search">
+            <field name="Title"/>
+            <field name="author_ids"/>
+            <field name="Editors"/>
+
+        </search>
+    </field>
+</record>
+
+
+</data>
+</odoo>
