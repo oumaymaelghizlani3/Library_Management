@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="author_list_view" model="ir.ui.view">
+            <field name="name">author list </field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="f_name"/>
+                    <field name="l_name"/>
+                    <field name="year"/>
+                    <field name="book_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="author_form_view" model="ir.ui.view">
+            <field name="name">author form </field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <form string="author">
+                    <sheet>
+                        <group colspan="4">
+                            <field name="f_name"/>
+                            <field name="l_name"/>
+                            <field name="year"/>
+                            <field name="book_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record >
+
+        <record model="ir.actions.act_window" id="action_list_author">
+            <field name="name">author</field>
+            <field name="res_model">library.author</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="library_author_list" name="Authors" parent="menu_root" action="action_list_author"/>
+            <record model="ir.ui.view" id="view_author_search">
+    <field name="name">library.author.search</field>
+    <field name="model">library.author</field>
+    <field name="arch" type="xml">
+        <search string="Search">
+            <field name="l_name"/>
+            <field name="f_name"/>
+
+            <field name="book_ids"/>
+
+        </search>
+    </field>
+</record>
+
+
+</data>
+</odoo>
